@@ -1,0 +1,131 @@
+﻿@model CRUDtest.Models.user
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<style>
+    /* Add custom color styles */
+    body {
+        background: linear-gradient(45deg, #f8f9fa 25%, transparent 25%, transparent 75%, #f8f9fa 75%, #f8f9fa), linear-gradient(45deg, #f8f9fa 25%, transparent 25%, transparent 75%, #f8f9fa 75%, #f8f9fa);
+        background-size: 80px 80px;
+    }
+
+    .custom-bg {
+        background-color: #f8f9fa; /* Light gray background color */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .custom-text {
+        color: #007bff; /* Blue text color */
+    }
+
+    .edit-heading {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .form-bottom-space {
+        margin-bottom: 20px;
+    }
+
+    .center-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    /* Input and button styling */
+    .form-control {
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        padding: 8px;
+        margin-bottom: 10px;
+    }
+
+    .btn-default {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+    }
+
+        .btn-default:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+</style>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto"></ul>
+    </div>
+</nav>
+
+<div class="container-fluid custom-bg">
+    <div class="row justify-content-center center-form">
+        <div class="col-md-6">
+            <h2 class="text-center custom-text edit-heading">Edit</h2>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.user_id)
+
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        @Html.LabelFor(model => model.firstname, htmlAttributes: new { @class = "control-label custom-text" })
+                    </div>
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.firstname, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.firstname, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        @Html.LabelFor(model => model.lastname, htmlAttributes: new { @class = "control-label custom-text" })
+                    </div>
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.lastname, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.lastname, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label custom-text" })
+                    </div>
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group form-bottom-space mt-3">
+                    <div class="col-md-offset-4 col-md-8">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="text-center">
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

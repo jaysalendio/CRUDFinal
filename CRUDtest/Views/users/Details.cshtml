@@ -1,0 +1,97 @@
+﻿@model CRUDtest.Models.user
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<style>
+    /* Add custom background pattern */
+    body {
+        background: linear-gradient(45deg, #f8f9fa 25%, transparent 25%, transparent 75%, #f8f9fa 75%, #f8f9fa), linear-gradient(45deg, #f8f9fa 25%, transparent 25%, transparent 75%, #f8f9fa 75%, #f8f9fa);
+        background-size: 80px 80px;
+    }
+
+    /* Add custom color styles */
+    .custom-bg {
+        background-color: #ffffff; /* Light gray background color */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .custom-text {
+        color: #007bff; /* Blue text color */
+    }
+
+    .details-heading {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .center-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    .dl-horizontal dt {
+        font-weight: bold;
+    }
+
+    .dl-horizontal dd {
+        margin-left: 0;
+    }
+</style>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+        </ul>
+    </div>
+</nav>
+
+<div class="container-fluid custom-bg">
+    <div class="row justify-content-center center-content">
+        <div class="col-md-6">
+            <h2 class="text-center custom-text details-heading">Details</h2>
+
+            <div>
+                <h4 class="custom-text">User Information</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        First Name:
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.firstname)
+                    </dd>
+
+                    <dt>
+                        Last Name:
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.lastname)
+                    </dd>
+
+                    <dt>
+                        Email Address:
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.email)
+                    </dd>
+                </dl>
+            </div>
+
+            <p class="text-center">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.user_id }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-secondary" })
+            </p>
+        </div>
+    </div>
+</div>
